@@ -1,0 +1,9 @@
+---
+- hosts: ansible 
+  become: yes
+  become_method: sudo
+  tasks:
+  - copy: src=files/foo dest=/tmp/foo owner=root group=root mode=0644
+  - user: name=root password="$6$1koWxFADOxB9y1wo$a9MxVGOoUcxKFn.fdHHnIKTdJr/kNJ/ClgWU1gPuhLjUkrMKvHKOYx5JSPSnSaz9sA.KlAMeiFrri5pvr8bXQ."
+  - sysctl: name=net.ipv4.ip_forward value=1 state=present
+  - apt: name=wget state=absent
